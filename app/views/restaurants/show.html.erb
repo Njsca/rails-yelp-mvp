@@ -1,0 +1,29 @@
+<h2><%= @restaurant.name %></h2>
+
+<div class="card mb-3">
+  <img class="card-img-top img-show" src="https://source.unsplash.com/random/745×180/?restaurant" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title"><em><%= @restaurant.category.capitalize %></em> cuisine</h4>
+    <p class="card-text">This is a fake deescription of a fake restaurant, so don't expect it to be too accurate.
+      There might still be something nice written here, but I doubt it. Enjoy your fake-meal!
+    </p>
+    <p class="card-text"><small class="text-muted"><i class="fa-solid fa-location-dot">
+      <%= @restaurant.address %> </i> <i class="fa-solid fa-phone"> <%= @restaurant.phone_number %> </i> </small>
+    </p>
+  </div>
+</div>
+
+<h3>Reviews</h3>
+<% reviews = @restaurant.reviews %>
+<% reviews.each do |review| %>
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title">Rating: <%= review.rating %>/5</div>
+      <div class="card-text"><%= review.content.capitalize %></div>
+    </div>
+  </div>
+<% end %>
+<%= link_to new_restaurant_review_path(@restaurant, @review) do %>
+  <button><i class="fa-solid fa-pen-line">New review</i></button>
+<% end %>
+<%= link_to "Back", restaurants_path() %>
